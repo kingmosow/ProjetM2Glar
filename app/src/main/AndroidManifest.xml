@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.projet.estm.projetm2glar">
+
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -19,7 +20,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".DetailActivity"
             android:parentActivityName=".MainActivity">
@@ -35,6 +35,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.projet.estm.projetm2glar.MainActivity" />
         </activity>
+        <activity android:name=".FormActivity"></activity>
     </application>
 
 </manifest>
