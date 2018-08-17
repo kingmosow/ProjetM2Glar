@@ -23,12 +23,17 @@
     <string name="choose_a_category">Choose a category</string>
     <string name="panier">panier</string>
     <string name="search">search</string>
-    <string-array
-        name="categories">
+    <string-array name="categories">
         <item>Salads</item>
         <item>Starters</item>
         <item>Entrees</item>
         <item>Desserts</item>
         <item>Drinks</item>
     </string-array>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
 </resources>
