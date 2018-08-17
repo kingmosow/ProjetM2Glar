@@ -129,7 +129,6 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
         return null;
 
     }
-    private SQLiteDatabase mDatabase;
 
     public long getDataItemsCount() {
 //        return DatabaseUtils.queryNumEntries(mDatabase, "T_Produit");
