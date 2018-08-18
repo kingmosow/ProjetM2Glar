@@ -57,9 +57,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Context myContext;
 
     SearchView searchView;
-//champ pour l'ajout
-    EditText nom,categorie,descript,prix;
-    ImageView img;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,11 +65,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         myContext = this;
 //recuperer les categories de produits
         mCategories = getResources().getStringArray(R.array.categories);
-
-        // appel au bd
-        dbHelper = new DBHelper(this);
-        dbHelper.seedDatabase(dataProduitList);
-        displayDataItems(0);
 
         //code pour toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -100,8 +92,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        // appel au bd
+        dbHelper = new DBHelper(this);
+        dbHelper.seedDatabase(dataProduitList);
         mRecyclerView = (RecyclerView) findViewById(R.id.rvItems);
-
+        displayDataItems(0);
     }
     //gerer le retour sur le toolbar
     @Override
@@ -120,14 +115,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dbHelper.close();
     }
     //recuperer et filtrer par categorie
-        private void displayDataItems(int category) {
+    private void displayDataItems(int category) {
 //        listFromDB = mDataSource.getAllItems(category);
         listFromDB = dbHelper.getAllProduit(category);
         mItemAdapter = new DataItemAdapter(this, listFromDB);
         mRecyclerView.setAdapter(mItemAdapter);
     }
     private void displayBySearch(String query) {
-//        listFromDB = mDataSource.getAllItems(category);
         listFromDB = dbHelper.filterSearch(query);
         mItemAdapter = new DataItemAdapter(this, listFromDB);
         mRecyclerView.setAdapter(mItemAdapter);
@@ -205,21 +199,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-
     //drawable
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         return false;
-    }
-
-    public void addProduit(){
-
-        nom = (EditText) findViewById(R.id.editName);
-        categorie = (EditText) findViewById(R.id.editCat);
-        descript = (EditText) findViewById(R.id.edDescript);
-        prix = (EditText) findViewById(R.id.edPrix);
-        img = (ImageView) findViewById(R.id.edImage);
-
-        dbHelper.addProduit(new Produit(nom.getText().toString(),categorie.getText().toString(),descript.getText().toString(),true,Integer.parseInt(prix.getText().toString()),""));
     }
 }
