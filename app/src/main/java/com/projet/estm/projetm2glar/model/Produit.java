@@ -3,6 +3,7 @@ package com.projet.estm.projetm2glar.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -24,13 +25,13 @@ public class Produit implements Serializable {
     private String category;
     @DatabaseField
     private int prix;
-    @DatabaseField
-    private String image;
+    @DatabaseField(dataType = DataType.BYTE_ARRAY)
+    private byte[] image;
 
     public Produit() {
     }
 
-    public Produit( String itemName, String category, String description, Boolean stock, int prix, String image) {
+    public Produit( String itemName, String category, String description, Boolean stock, int prix, byte[] image) {
         this.itemName = itemName;
         this.description = description;
         this.stock = stock;
@@ -88,11 +89,11 @@ public class Produit implements Serializable {
         this.prix = prix;
     }
 
-    public String getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 
@@ -105,7 +106,6 @@ public class Produit implements Serializable {
                 ", stock=" + stock +
                 ", category='" + category + '\'' +
                 ", prix='" + prix + '\'' +
-                ", image='" + image + '\'' +
                 '}';
     }
 }

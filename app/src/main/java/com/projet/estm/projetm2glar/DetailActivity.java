@@ -1,5 +1,7 @@
 package com.projet.estm.projetm2glar;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -43,22 +45,8 @@ public class DetailActivity extends AppCompatActivity {
         NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.getDefault());
         tvPrice.setText(nf.format(item.getPrix()));
 
-        InputStream inputStream = null;
-        try {
-            String imageFile = item.getImage();
-            inputStream = getAssets().open(imageFile);
-            Drawable d = Drawable.createFromStream(inputStream, null);
-            itemImage.setImageDrawable(d);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (inputStream != null) {
-                try {
-                    inputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+        byte[] imageFile = item.getImage();
+        Bitmap bitmap = BitmapFactory.decodeByteArray(imageFile, 0, imageFile.length);
+        itemImage.setImageBitmap(bitmap);
     }
 }

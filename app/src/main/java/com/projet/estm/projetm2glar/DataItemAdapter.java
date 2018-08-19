@@ -3,6 +3,8 @@ package com.projet.estm.projetm2glar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -57,21 +59,14 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Produit item = mItems.get(position);
         NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        holder.tvName.setText(item.getItemName());
+        holder.tvDescript.setText(item.getDescription());
 
-        try {
-            holder.tvName.setText(item.getItemName());
-            holder.tvDescript.setText(item.getDescription());
+        holder.tvPrix.setText(nf.format(item.getPrix()));
+        byte[] imageFile = item.getImage();
+        Bitmap bitmap = BitmapFactory.decodeByteArray(imageFile, 0, imageFile.length);
+        holder.imageView.setImageBitmap(bitmap);
 
-            holder.tvPrix.setText(nf.format(item.getPrix()));
-            String imageFile = item.getImage();
-            InputStream inputStream = mContext.getAssets().open(imageFile);
-            Drawable d = Drawable.createFromStream(inputStream, null);
-            holder.imageView.setImageDrawable(d);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-//        Bundle b = new Bundle();
-//        b.putStringArray("item", new String[]{item.getItemName(), item.getDescription(), String.valueOf(item.getPrix()),item.getImage()});
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,7 +91,11 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return mItems.size();
+        int c=0;
+//        if( mItems.size() == null);
+        if( mItems == null)
+            return c;
+        else return mItems.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

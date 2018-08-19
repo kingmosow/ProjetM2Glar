@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private static final int SIGNIN_REQUEST = 1001;
     public static final String MY_GLOBAL_PREFS = "my_global_prefs";
-    List<Produit> dataProduitList = SampleDataProvider.produitList;
+//    List<Produit> dataProduitList = SampleDataProvider.produitList;
     public static final String FORM_KEY = "form_key";
 
 //    DataSource mDataSource;
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // appel au bd
         dbHelper = new DBHelper(this);
-        dbHelper.seedDatabase(dataProduitList);
+//        dbHelper.seedDatabase(dataProduitList);
         mRecyclerView = (RecyclerView) findViewById(R.id.rvItems);
         displayDataItems(0);
     }
