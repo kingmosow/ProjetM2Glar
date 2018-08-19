@@ -104,5 +104,15 @@ public class FormActivity extends AppCompatActivity {
         btnChoose = (Button) findViewById(R.id.btnChoose);
         img = (ImageView) findViewById(R.id.edImage);
     }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        dbHelper.close();
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        dbHelper.isOpen();
+    }
 }
 
