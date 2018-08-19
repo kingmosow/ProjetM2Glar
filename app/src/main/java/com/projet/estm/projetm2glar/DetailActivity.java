@@ -24,7 +24,10 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        Produit item = getIntent().getExtras().getParcelable(DataItemAdapter.ITEM_KEY);
+//        Produit item = getIntent().getExtras().getParcelable(DataItemAdapter.ITEM_KEY);
+        Produit item = (Produit) getIntent().getSerializableExtra(DataItemAdapter.ITEM_KEY);;
+
+
         if (item == null) {
             throw new AssertionError("Null data item received!");
         }

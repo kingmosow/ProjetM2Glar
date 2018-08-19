@@ -84,15 +84,10 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
     super.onActivityResult(requestCode, resultCode, data);
 }
-    public void choisirImage(View view){
-        Button btnChoose = (Button) findViewById(R.id.btnChoose);
-        btnChoose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, SELECTED_PIC);
-            }
-        });
+public void choisirImage(View view){
+        Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, SELECTED_PIC);
+
 
 //        btnChoose.setOnClickListener(new View.OnClickListener() {
 //            @Override

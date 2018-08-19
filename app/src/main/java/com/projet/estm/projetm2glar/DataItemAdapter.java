@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.SearchView;
@@ -69,7 +70,8 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+//        Bundle b = new Bundle();
+//        b.putStringArray("item", new String[]{item.getItemName(), item.getDescription(), String.valueOf(item.getPrix()),item.getImage()});
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +79,7 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
 //                        Toast.LENGTH_SHORT).show();
 //                String itemId = item.getItemId();
                 Intent intent = new Intent(mContext, DetailActivity.class);
-                intent.putExtra(ITEM_KEY, (Parcelable) item);
+                intent.putExtra(ITEM_KEY, item);
                 mContext.startActivity(intent);
             }
         });

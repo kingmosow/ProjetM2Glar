@@ -6,8 +6,10 @@ import android.os.Parcelable;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.io.Serializable;
+
 @DatabaseTable(tableName = "T_Produit")
-public class Produit implements Parcelable {
+public class Produit implements Serializable {
     @DatabaseField(columnName = "itemId", generatedId = true)
     private int itemId;
     //@DatabaseField(canBeNull = false,foreign = true,foreignColumnName = "userId",foreignAutoCreate = true)
@@ -106,45 +108,4 @@ public class Produit implements Parcelable {
                 ", image='" + image + '\'' +
                 '}';
     }
-
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.itemId);
-        dest.writeString(this.itemName);
-        dest.writeString(this.description);
-        dest.writeString(this.category);
-//        dest.writeBooleanArray(this.stock);
-        dest.writeByte((byte) (this.stock ? 1 : 0));
-        dest.writeInt(this.prix);
-        dest.writeString(this.image);
-    }
-
-    protected Produit(Parcel in) {
-        this.itemId = in.readInt();
-        this.itemName = in.readString();
-        this.description = in.readString();
-        this.category = in.readString();
-//        this.stock = in.readBooleanArray();
-        this.stock = in.readByte() != 0;
-        this.prix = in.readInt();
-        this.image = in.readString();
-    }
-
-    public static final Parcelable.Creator<Produit> CREATOR = new Parcelable.Creator<Produit>() {
-        @Override
-        public Produit createFromParcel(Parcel source) {
-            return new Produit(source);
-        }
-
-        @Override
-        public Produit[] newArray(int size) {
-            return new Produit[size];
-        }
-    };
 }
